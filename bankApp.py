@@ -29,7 +29,9 @@ def index():
 
 @app.route("/dashboard")
 def dashboard():
-    transactions = Transaction.query.all()
+    # transactions = Transaction.query.all()
+    transactions = [Transaction(
+        id=2, currency="$", value=1238.0, madeby="Luke", approvedby="skywalker")]
     return render_template("dashboard.html", user=session['user'], transactions=transactions)
 
 

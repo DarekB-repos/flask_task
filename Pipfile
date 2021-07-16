@@ -10,7 +10,6 @@ bandit = "*"
 flake8 = "*"
 flask-sqlalchemy = "*"
 
-
 [dev-packages]
 
 [requires]

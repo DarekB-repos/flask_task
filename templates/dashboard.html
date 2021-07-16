@@ -8,7 +8,7 @@
 <div class="welcome-container">
     <h1>You are logged as {{ user }}</h1>
 </div>
-{% if tasks|length < 1 %} <p>No Transacions to display</p>
+{% if transactions|length < 1 %} <p>No Transacions to display</p>
     {% else %}
     <table class="table table-secondary table-hover">
         <tr>
@@ -20,11 +20,11 @@
         </tr>
         {% for item in transactions %}
         <tr>
-            <td>er452@@3r6%</td>
-            <td>$</td>
-            <td>1239.023</td>
-            <td>User</td>
-            <td>Admin</td>
+            <td>{{ item.id }}</td>
+            <td>{{ item.currency }}</td>
+            <td>{{ item.value }}</td>
+            <td>{{ item.madeby }}</td>
+            <td>{{ item.approvedby }}</td>
         </tr>
         {% endfor %}
         {% endif %}

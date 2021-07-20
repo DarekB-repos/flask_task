@@ -1,13 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'base_navi.html' %}
 
 {% block head %}
 <title>Brand New bank app</title>
-{% endblock%}
-
+{% endblock %}
 {% block body %}
+
 <div class="welcome-container">
     <h1>Welcome {{ user }}</h1>
-    <p>LWhat would you like to do?</p>
+    <p>What would you like to do?</p>
 </div>
 <a href="{{ url_for('dashboard') }}" class="btn btn-success">Go To Dashboard</a>
 <a href="{{ url_for('create_transaction') }}" class="btn btn-primary">AddTransaction</a>

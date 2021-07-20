@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_navi.html' %}
 
 {% block head %}
 <title>Brand New bank app</title>
@@ -16,7 +16,12 @@
             <th>Currency</th>
             <th>Value</th>
             <th>Made by</th>
+            <th>Transaction date</th>
             <th>Approved by</th>
+            <th>Approval date</th>
+            {% if able_to_approve %}
+            <th>Action</th>
+            {% endif %}
         </tr>
         {% for item in transactions %}
         <tr>
@@ -24,7 +29,19 @@
             <td>{{ item.currency }}</td>
             <td>{{ item.value }}</td>
             <td>{{ item.madeby }}</td>
+            <td>{{ item.tran_date }}</td>
             <td>{{ item.approvedby }}</td>
+            <td>{{ item.approve_date}}</td>
+            {% if able_to_approve %}
+            {% if item.approvedby is sameas None %}
+            <td>
+                <a href="{{ url_for('approve', id=item.id) }}">Approve</a>
+                <a href="{{ url_for('cancel', id=item.id) }}">Cancel</a>
+            </td>
+            {% else %}
+            <td>Approved!</td>
+            {% endif %}
+            {% endif %}
         </tr>
         {% endfor %}
         {% endif %}

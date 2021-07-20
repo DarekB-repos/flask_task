@@ -1,3 +1,27 @@
 .welcome-container {
   margin: 0 0 60px 0;
 }
+
+.input_container {
+  margin: 2px;
+  overflow: hidden;
+}
+
+.test-box {
+  height: 60px;
+  width: 60px;
+  background-color: aqua;
+  color: azure;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 50% 20% 30%;
+  margin: 10px;
+  grid-gap: 1em;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: flex-end;
+}

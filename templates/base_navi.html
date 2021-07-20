@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}{% endblock %}
+
+{% block navi %}
+<div class="nav-bar">
+    <a href="{{ url_for('index') }}" class="btn btn-link">Go to Main Page</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-link">Logout</a>
+</div>
+{% endblock %}
+
+{% block body %}{% endblock %}

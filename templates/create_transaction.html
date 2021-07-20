@@ -1,0 +1,27 @@
+{% extends 'base_navi.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<h1 class="m-3">Provide deteails for transaction</h1>
+
+<form action="/create-transaction" method="POST">
+    <div class="grid-container">
+        <input type="text" name="value" placeholder="provide value" class="form-control">
+        <select name="currency" aria-label="Default select example" class="form-control">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="PLN">PLN</option>
+        </select>
+        <button type="submit" class="btn btn-primary btn-lg form-common-height">Submit Transaction</button>
+    </div>
+    <!-- <div class="d-flex justify-content-around">
+        <div class="test-box">Fuck off</div>
+        <div class="test-box"></div>
+        <div class="test-box"></div>
+        <div class="test-box"></div>
+        <div class="test-box"></div>
+    </div> -->
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+services:
+  - docker
+
+before-install:
+  - docker build -t testdocker .
+
+script:
+  - cd usr/src/app
+  - flake8 .
+  - bandit .

@@ -9,3 +9,4 @@ script:
   - docker run -e CI=true testdocker safety check
   - docker run -e CI=true testdocker flake8 .
   - docker run -e CI=true testdocker bandit .
+  - docker run -e CI=true testdocker pytest -s -v --cov-report term-missing --cov=.

@@ -5,5 +5,5 @@ before-install:
   - docker build -t testdocker .
 
 script:
-  - docker run -e testdocker flake8 .
-  - docker run -e testdocker bandit .
+  - docker run -e CI=true testdocker flake8 .
+  - docker run -e CI=true testdocker bandit .

@@ -10,7 +10,7 @@ app.secret_key = "Elohell"
 db = SQLAlchemy(app)
 logging.basicConfig(level=logging.DEBUG)
 
-approvers = ['Admin', 'Tommy']
+approvers = ["Admin", "Tommy"]
 
 
 class Transaction(db.Model):
@@ -23,11 +23,11 @@ class Transaction(db.Model):
     approvedby = db.Column(db.String(200), nullable=True)
 
 
-@app.route("/", methods=['GET'])
+@app.route("/", methods=["GET"])
 def index():
     logging.debug(f"{session}")
     if "user" in session:
-        return render_template("index.html", user=session['user'])
+        return render_template("index.html", user=session["user"])
     else:
         return redirect(url_for("login"))
 
@@ -35,23 +35,24 @@ def index():
 @app.route("/dashboard")
 def dashboard():
     transactions = Transaction.query.all()
-    able_to_approve = (session['user'] in approvers)
+    able_to_approve = session["user"] in approvers
     return render_template(
-                            "dashboard.html", user=session['user'],
-                            transactions=transactions,
-                            able_to_approve=able_to_approve
-                            )
+        "dashboard.html",
+        user=session["user"],
+        transactions=transactions,
+        able_to_approve=able_to_approve,
+    )
 
 
-@ app.route("/create-transaction", methods=['GET', 'POST'])
+@app.route("/create-transaction", methods=["GET", "POST"])
 def create_transaction():
-    if request.method == 'POST':
+    if request.method == "POST":
         transaction = Transaction(
             id=str(uuid4()),
-            currency=request.form['currency'],
-            value=request.form['value'],
+            currency=request.form["currency"],
+            value=request.form["value"],
             tran_date=datetime.datetime.now(),
-            madeby=session['user']
+            madeby=session["user"],
         )
 
         try:
@@ -71,7 +72,7 @@ def approve(id):
     tran = Transaction.query.get_or_404(id)
 
     tran.approve_date = datetime.datetime.now()
-    tran.approvedby = session['user']
+    tran.approvedby = session["user"]
 
     try:
         db.session.commit()
@@ -96,27 +97,27 @@ def cancel(id):
 
 @app.route("/logout")
 def logout():
-    if 'user' in session:
-        session.pop('user', None)
+    if "user" in session:
+        session.pop("user", None)
 
     return redirect(url_for("login"))
 
 
-@app.route("/login", methods=['GET', 'POST'])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     # logging.debug(f"{request.method =}")
     # logging.debug(f"{session =}")
-    if request.method == 'POST':
+    if request.method == "POST":
         logging.debug(f"{request.form['login'] =}")
-        if request.form['login'] != "":
-            session['user'] = request.form['login']
+        if request.form["login"] != "":
+            session["user"] = request.form["login"]
             return redirect(url_for("index"))
         else:
-            session.pop('user', None)
+            session.pop("user", None)
             return render_template("login.html")
     else:
         return render_template("login.html")
 
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+# if __name__ == "__main__":
+#     app.run(debug=True, host="0.0.0.0")

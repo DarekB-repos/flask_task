@@ -7,6 +7,6 @@ before-install:
 script:
   - docker run -e CI=true testdocker pip check
   - docker run -e CI=true testdocker safety check
-  - docker run -e CI=true testdocker flake8 .
-  - docker run -e CI=true testdocker bandit .
+  - docker run -e CI=true testdocker flake8 . --max-complexity 10 --max-line-length 120
+  - docker run -e CI=true testdocker bandit -r .
   - docker run -e CI=true testdocker pytest -s -v --cov-report term-missing --cov=.

@@ -36,7 +36,11 @@ def index():
 def dashboard():
     transactions = Transaction.query.all()
     able_to_approve = (session['user'] in approvers)
-    return render_template("dashboard.html", user=session['user'], transactions=transactions, able_to_approve=able_to_approve)
+    return render_template(
+                            "dashboard.html", user=session['user'],
+                            transactions=transactions,
+                            able_to_approve=able_to_approve
+                            )
 
 
 @ app.route("/create-transaction", methods=['GET', 'POST'])

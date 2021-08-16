@@ -5,6 +5,6 @@ before-install:
   - docker build -t testdocker .
 
 script:
-  - cd usr/src/app
-  - flake8 .
-  - bandit .
+  - docker run --name fta testdocker
+  - docker exec -it fta flake8 .
+  - docker exec -it fta bandit .

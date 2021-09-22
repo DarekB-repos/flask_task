@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 approvers = ["Admin", "Tommy"]
 
-
+# teston
 class Transaction(db.Model):
     id = db.Column(db.String(100), primary_key=True)
     currency = db.Column(db.String(3), nullable=False)
